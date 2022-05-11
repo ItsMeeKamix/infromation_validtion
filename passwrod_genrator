@@ -1,0 +1,39 @@
+import random
+import string
+
+def sample_generator():
+    length = 0
+    sample_string = ""
+
+    while length == 0:
+        try:
+            length = int(input('How many digits do you want your password to be?'))
+            if length == 0:
+                print("Enter a number bigger than 0")
+        except ValueError:  # User didn't input a number
+            print("Enter a number")
+
+    if input("Do you want to use lower word? Y/N") == "Y":
+        sample_string += string.ascii_lowercase
+    if input("Do you want to use upper word? Y/N") == "Y":
+        sample_string += string.ascii_uppercase
+    if input("Do you want to use numbers? Y/N") == "Y":
+        sample_string += string.digits
+    if input("Do you want to use symbols? Y/N") == 'Y':
+        sample_string += string.punctuation
+    return length, sample_string
+
+
+def password_genrator():
+    while True:
+        length, sample_string = sample_generator()
+        if len(sample_string) > 0:
+            password = ''.join(random.sample(sample_string, length))
+            print("Here's your password:")
+            print(password)
+            break
+        else:
+            print("You didn't choose any of options")
+
+
+password_genrator()
