@@ -1,0 +1,68 @@
+# sign-up code
+not_password = ['!', '@', '#', '$', '%', '-']
+
+def find_symbols():
+    for x in password:
+        if x in not_password:
+            return True
+def capital():
+    listed_username = list(user_name)
+    first_item = listed_username[0]
+    if first_item == f"{first_item}".capitalize():
+        return True
+    else:
+        return False
+
+while True:
+    user_name = input("Please choose a new user name and your first word must be capital: ")
+    password = input(
+        "Please choose a new password,bigger three character and maximum twelve character without symbols: ")
+    password_len = len(password)
+    user_name_len = len(user_name)
+
+    if find_symbols():
+        print("Your password contained symbols.Try again.")
+        continue
+    elif capital() == False:
+        print("the first item of your user name isn't capital")
+    elif 0 < password_len < 4 or password_len > 12:
+        print("your password is too short")
+        continue
+    elif user_name_len == 0:
+        print("You must have a user name, type some please.")
+        continue
+    elif password_len == 0:
+        print('You must have a password!! ')
+        continue
+    else:
+        print("You have successfully registered your information")
+        break
+user_information = {
+    'username': user_name,
+    'password': password,
+}
+# print(user_information)
+
+
+# login part
+while True:
+    user_name_login = input("What was your user name? ")
+    password_login = input("What was your password? ")
+    if user_name_login != user_information['username']:
+        print("your user name is wrong.")
+    elif password_login != user_information['password']:
+        print("your password is wrong. ")
+    elif password_login == user_information['password'] and user_name_login == user_information['username']:
+        print("your information's are matches ")
+        break
+
+
+class UserInformation_show:
+    def __init__(self, username, passwrod):
+        self.username = username
+        self.passwrod = passwrod
+
+
+user1 = UserInformation_show(user_information['username'], user_information['password'])
+
+print(f"your data has been stored with,user name: {user1.username} and your password: {user1.passwrod}")
